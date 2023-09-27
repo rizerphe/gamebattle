@@ -3,7 +3,7 @@ import os
 
 import yaml
 
-all_files = glob.glob("*/index.yaml")
+all_files = glob.glob("*.yaml")
 for file in all_files:
     with open(file) as f:
         try:
@@ -13,12 +13,12 @@ for file in all_files:
             print(file)
             exit(1)
         try:
-            folder = os.path.dirname(file)
+            folder = file[:-5]
 
             print(f"Validating {folder}")
             print(f"  Name: {data['name']}")
             print(f"  Email: {data['email']}")
-            print(f"  Author: {data['student']}")
+            print(f"  Author: {data['author']}")
 
             if folder != data["email"].split(".")[0]:
                 print(f"Folder and email do not match")
